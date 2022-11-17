@@ -4,9 +4,9 @@ import argparse
 import os
 
 from PIL import Image
+
 from lib.helpers import get_random_name
 from lib.screenshot import generate_screenshot, pixel_diffs
-
 
 # Prepare Arguments Parser
 parser = argparse.ArgumentParser(
