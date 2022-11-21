@@ -1,6 +1,6 @@
 from selenium import webdriver
 
-from lib.settings import Debug
+from settings import Debug, WebdriverVehicleError
 
 
 @Debug
@@ -40,7 +40,7 @@ def get_driver(driver_name="chrome"):
         )
 
     if driver is None:
-        raise SETTINGS.WebdriverVehicleError(f"Vehicle {driver} does not exists yet.")
+        raise WebdriverVehicleError(f"Vehicle {driver} does not exists yet.")
 
     driver.set_window_position(0, 0)
 
