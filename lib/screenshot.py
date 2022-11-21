@@ -1,8 +1,8 @@
 from PIL import ImageChops
 
-import lib.settings as SETTINGS
+import settings as SETTINGS
 from lib.drivers import get_driver
-from lib.settings import Debug
+from settings import Debug
 
 
 @Debug
