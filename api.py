@@ -1,10 +1,8 @@
-import os
 from fastapi import FastAPI
-from fastapi.responses import Response, FileResponse
-from PIL import Image
+from fastapi.responses import FileResponse
 
 from lib.helpers import get_random_name
-from lib.screenshot import generate_screenshot, pixel_diffs
+from lib.main import Run
 
 app = FastAPI()
 
@@ -23,24 +21,14 @@ def get_random_name_query(length: int = 14):
     "/screenshot",
     response_class=FileResponse,
 )
-def get_screenshot(source_url: str, target_url: str, browser: str = "chrome"):
-    session = get_random_name()
-    compare = [
-        generate_screenshot(website=source_url, name=f"s-{session}", driver=browser),
-        generate_screenshot(website=target_url, name=f"t-{session}", driver=browser),
-    ]
-
-    # Sort file instances
-    img_source = Image.open(f"{compare[0]}")
-    img_comparison = Image.open(f"{compare[1]}")
-
-    output_file = f"r-{session}.png"
-
-    # The magic
-    diff = pixel_diffs(img_source, img_comparison)
-    diff.save(output_file)
-
-    for fi in compare:
-        os.remove(fi)
-
-    return output_file
+def get_screenshot(
+    source_url: str, target_url: str, browser: str = "chrome", warmup_time: int = 0
+):
+    return Run(
+        source_url=source_url,
+        target_url=target_url,
+        browser=browser,
+        keep_files=False,
+        open_result=False,
+        warmup_time=warmup_time,
+    )

@@ -1,5 +1,3 @@
-#!python
-
 import inspect
 
 webdriver_width_max = 4096
@@ -11,6 +9,9 @@ webdriver_height_min = 0
 webdriver_height_default = 1080
 
 webdriver_default_driver = "chrome"
+webdriver_default_warmup_time = 0
+
+screenshots_output_folder = "./renders/"
 
 
 class WebdriverSizeError(Exception):

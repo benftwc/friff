@@ -1,3 +1,5 @@
+import time
+
 from PIL import ImageChops
 
 import settings as SETTINGS
@@ -41,6 +43,7 @@ def generate_screenshot(
     width=SETTINGS.webdriver_width_default,
     height=SETTINGS.webdriver_height_default,
     driver=SETTINGS.webdriver_default_driver,
+    warmup_time=SETTINGS.webdriver_default_warmup_time,
 ):
     """Based on its URL, generate Website screenshot
 
@@ -69,10 +72,13 @@ def generate_screenshot(
         raise SETTINGS.WebdriverSizeError()
 
     driver = get_driver(driver)
+    if warmup_time:
+        time.sleep(warmup_time)
     driver.get(website)
     driver.set_window_size(width, height)
     screenshot_name = f"{name}.png"
-    driver.save_screenshot(screenshot_name)
+    screenshot_path = SETTINGS.screenshots_output_folder + screenshot_name
+    driver.save_screenshot(screenshot_path)
     driver.quit()
 
-    return screenshot_name
+    return screenshot_path
