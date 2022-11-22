@@ -1,12 +1,8 @@
 #!/usr/bin/env python3
-# Imports
+
 import argparse
-import os
 
-from PIL import Image
-
-from lib.helpers import get_random_name
-from lib.screenshot import generate_screenshot, pixel_diffs
+from lib.main import Run
 
 # Prepare Arguments Parser
 parser = argparse.ArgumentParser(
@@ -75,33 +71,11 @@ parser.add_argument(
 )
 args = parser.parse_args()
 
-## RUNNER
-## TO REFACTOR :kekw:
-# Prepare to-compare files
-session = get_random_name()
-compare = [
-    generate_screenshot(
-        website=args.source_url, name=f"s-{session}", driver=args.browser
-    ),
-    generate_screenshot(
-        website=args.target_url, name=f"t-{session}", driver=args.browser
-    ),
-]
-
-# Sort file instances
-img_source = Image.open(f"{compare[0]}")
-img_comparison = Image.open(f"{compare[1]}")
-
-output_file = f"r-{session}.png"
-
-# The magic
-diff = pixel_diffs(img_source, img_comparison)
-diff.save(output_file)
-
-if args.open_result:
-    Image.open(output_file).show()
-
-if not args.keep_files:
-    for fi in compare:
-        os.remove(fi)
-    os.remove(output_file)
+Run(
+    source_url=args.source_url,
+    target_url=args.target_url,
+    browser=args.browser,
+    keep_files=args.keep_files,
+    open_result=args.open_result,
+    warmup_time=args.warmup_time,
+)
