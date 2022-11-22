@@ -34,3 +34,28 @@ $ source .venv/bin/activate
 $ pip install -r requirements.txt
 $ python script.py -s https://fr.wikipedia.org/wiki/Tatenectes -t https://fr.wikipedia.org/wiki/Genre_\(biologie\) -o -v -k
 ```
+
+# Testing API endpoints with Swagger
+
+```shell
+$ python -m venv .venv
+$ source .venv/bin/activate
+$ pip install -r dev-requirements.txt
+$ python -m uvicorn api:app --reload
+```
+
+Then open [Swagger endpoint](http://127.0.0.1/docs/) to test API
+
+:warning: Current UVICORN settings are not designed for production needs.
+Use with caution and check [this documentation page](https://www.uvicorn.org/deployment/) first.
+
+# Build
+
+```shell
+$ python -m pip install pip --upgrade
+$ pip install -r build-requirements.txt
+$ python -m build
+```
+
+This will generate new package into `./dist/` folder.
+You'll need to edit `./pyproject.toml` file in order to fit your needs.
