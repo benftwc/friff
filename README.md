@@ -47,6 +47,7 @@ $ python -m uvicorn api:app --reload
 Then open [Swagger endpoint](http://127.0.0.1/docs/) to test API
 
 :warning: Current UVICORN settings are not designed for production needs.
+
 Use with caution and check [this documentation page](https://www.uvicorn.org/deployment/) first.
 
 # Build
