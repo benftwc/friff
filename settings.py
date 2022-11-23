@@ -12,6 +12,7 @@ webdriver_default_driver = "chrome"
 webdriver_default_warmup_time = 0
 
 screenshots_output_folder = "./renders/"
+screenshots_output_extension = "png"
 
 
 class WebdriverSizeError(Exception):
