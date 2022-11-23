@@ -14,6 +14,7 @@ def Run(
     open_result: bool = False,
     keep_files: bool = False,
     warmup_time: int = 0,
+    screenshot_extension:str = SETTINGS.screenshots_output_extension
 ):
     """Main runner as different systems may start Bot
 
@@ -34,12 +35,14 @@ def Run(
             name=f"s-{session}",
             driver=browser,
             warmup_time=warmup_time,
+            extension=screenshot_extension
         ),
         generate_screenshot(
             website=target_url,
             name=f"t-{session}",
             driver=browser,
             warmup_time=warmup_time,
+            extension=screenshot_extension
         ),
     ]
 
@@ -47,7 +50,8 @@ def Run(
     img_source = Image.open(f"{compare[0]}")
     img_comparison = Image.open(f"{compare[1]}")
 
-    output_file = f"{SETTINGS.screenshots_output_folder}r-{session}.png"
+    # Prepare the output
+    output_file = f"{SETTINGS.screenshots_output_folder}r-{session}.{screenshot_extension}"
 
     # The magic
     diff = pixel_diffs(img_source, img_comparison)
