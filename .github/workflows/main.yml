@@ -1,3 +1,15 @@
-steps:
-  - uses: actions/checkout@v1
-  - uses: ricardochaves/python-lint@v1.4.0
+name: python-lint
+on: [push]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - uses: weibullguy/python-lint@master
+        with:
+          python-root-list: "tests"
+          use-check-manifest: false
+          use-pyroma: false
+          extra-rstcheck-options: "-r"
