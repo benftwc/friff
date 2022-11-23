@@ -3,7 +3,7 @@ import os
 from PIL import Image
 
 import settings as SETTINGS
-from lib.helpers import get_random_name
+from lib.helpers import get_random_name, init_render_folder
 from lib.screenshot import generate_screenshot, pixel_diffs
 
 
@@ -28,6 +28,11 @@ def Run(
     Returns:
         string: URI to generated picture
     """
+    # Prepare the render folder
+    init_render_folder(SETTINGS.screenshots_output_folder)
+
+    # Comparison session name generation
+    # Used to store/load/cache Comparison queries
     session = get_random_name(32)
     compare = [
         generate_screenshot(
