@@ -3,7 +3,7 @@ import time
 from PIL import ImageChops
 
 import settings as SETTINGS
-from lib.drivers import get_driver
+from src.drivers import get_driver
 from settings import Debug
 
 

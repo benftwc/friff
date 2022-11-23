@@ -3,8 +3,8 @@ import os
 from PIL import Image
 
 import settings as SETTINGS
-from lib.helpers import get_random_name, init_render_folder
-from lib.screenshot import generate_screenshot, pixel_diffs
+from src.helpers import get_random_name, init_render_folder
+from src.screenshot import generate_screenshot, pixel_diffs
 
 
 def Run(
