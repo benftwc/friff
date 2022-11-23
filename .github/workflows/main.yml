@@ -2,14 +2,24 @@ name: python-lint
 on: [push]
 
 jobs:
-  lint:
+  build:
     runs-on: ubuntu-latest
-
+    name: Checks
     steps:
-      - uses: actions/checkout@v1
-      - uses: weibullguy/python-lint@master
-        with:
-          python-root-list: "tests"
-          use-check-manifest: false
-          use-pyroma: false
-          extra-rstcheck-options: "-r"
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.10
+    - name: Install Latest PIP
+      run: pip install --upgrade pip
+    - name: Install project dependencies if exists
+      run: if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Install Black, Pylint and Mypy
+      run: pip install "black<23" pylint==v3.0.0a3 mypy==v0.902
+    - name: Run BLACK
+      run: black --diff --check $(git ls-files '*.py')
+    - name: Run PYLINT
+      run: pylint --disable=all --enable=unused-import $(git ls-files '*.py')
+    - name: Run MYPY
+      run: mypy --strict $(git ls-files '*.py')

@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
 
-from lib.helpers import get_random_name
-from lib.main import Run
+from src.helpers import get_random_name
+from src.main import Run
 
 app = FastAPI()
 

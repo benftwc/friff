@@ -27,6 +27,7 @@ def create_writable_directory(dir_name):
     os.mkdir(dir_name, 0o766)
     os.umask(umask)
 
+
 def init_render_folder(dirname):
     """Create the default render folder - Called on app init
 

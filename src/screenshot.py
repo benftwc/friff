@@ -3,7 +3,7 @@ import time
 from PIL import ImageChops
 
 import settings as SETTINGS
-from lib.drivers import get_driver
+from src.drivers import get_driver
 from settings import Debug
 
 
@@ -44,7 +44,7 @@ def generate_screenshot(
     height=SETTINGS.webdriver_height_default,
     driver=SETTINGS.webdriver_default_driver,
     warmup_time=SETTINGS.webdriver_default_warmup_time,
-    extension=SETTINGS.screenshot_extension
+    extension=SETTINGS.screenshot_extension,
 ):
     """Based on its URL, generate Website screenshot
 

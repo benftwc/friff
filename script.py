@@ -2,7 +2,7 @@
 
 import argparse
 
-from lib.main import Run
+from src.main import Run
 
 # Prepare Arguments Parser
 parser = argparse.ArgumentParser(
