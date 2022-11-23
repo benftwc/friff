@@ -1,16 +1,17 @@
 name: python-lint
 on: [push]
 
+
 jobs:
   build:
     runs-on: ubuntu-latest
     name: Checks
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python 3.10
+    - name: Set up Python 3.9
       uses: actions/setup-python@v2
       with:
-        python-version: 3.10
+        python-version: 3.9
     - name: Install Latest PIP
       run: pip install --upgrade pip
     - name: Install project dependencies if exists
@@ -20,6 +21,6 @@ jobs:
     - name: Run BLACK
       run: black --diff --check $(git ls-files '*.py')
     - name: Run PYLINT
-      run: pylint --disable=all --enable=unused-import $(git ls-files '*.py')
+      run: pylint --disable=unused-import,import-outside-toplevel $(git ls-files '*.py')
     - name: Run MYPY
       run: mypy --strict $(git ls-files '*.py')
