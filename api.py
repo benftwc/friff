@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
+from fastapi.openapi.utils import get_openapi
 
 from lib.helpers import get_random_name
 from lib.main import Run
@@ -32,3 +33,17 @@ def get_screenshot(
         open_result=False,
         warmup_time=warmup_time,
     )
+
+
+def friff_openapi():
+    if app.openapi_schema:
+        return app.openapi_schema
+
+    openapi_schema = get_openapi(
+        title="Friff - Front Diff Checker", version="1.0.0", routes=app.routes
+    )
+    app.openapi_schema = openapi_schema
+    return app.openapi_schema
+
+
+app.openapi = friff_openapi

@@ -1,14 +1,13 @@
-# front-diff-checker
-(name subject to changes.)
+# friff.
 
 Using Selenium and its BrowserDrivers, it take's screenshots and compare them to get differences between two given environments.
 
-Require python3.10
+Require python >= 3.8
 
 # Usage
 
 ```shell
-usage: script.py [-h] [-s URL] [-t URL] [-k] [-p] [-o] [-w WARMUP_TIME] [-v] [-b BROWSER]
+usage: friff [-h] [-s URL] [-t URL] [-k] [-p] [-o] [-w WARMUP_TIME] [-v] [-b BROWSER]
 
 Take screenshot and compare them to get differences between two given environments
 
