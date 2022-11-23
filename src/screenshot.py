@@ -6,7 +6,6 @@ import settings as SETTINGS
 from src.drivers import get_driver
 from settings import Debug
 
-
 @Debug
 def pixel_diffs(source, comparison):
     """Do the magic.

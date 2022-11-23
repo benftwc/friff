@@ -6,7 +6,6 @@ import settings as SETTINGS
 from src.helpers import get_random_name, init_render_folder
 from src.screenshot import generate_screenshot, pixel_diffs
 
-
 def Run(
     source_url: str,
     target_url: str,
